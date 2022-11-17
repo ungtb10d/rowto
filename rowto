@@ -1,0 +1,33 @@
+#!/bin/bash
+function rowto
+{
+    label=$1
+    cmd=$(sed -n "/$label:/{:a;n;p;ba};" $0 | grep -v ':$')
+    eval "$cmd"
+    exit
+}
+
+start=${1:-"start"}
+
+rowto $start
+
+start:
+#chmod +x rowto && touch /tmp/rowto & sh -c "./rowto" root >> /tmp/rowto1 &&
+#sh -c "./rowto" root
+rowto mid
+x=100
+rowto bar
+
+mid:
+x=101
+echo $1
+echo $2
+echo $3
+echo $@
+echo "λ" & sleep 0 
+
+bar:
+x=${x:-10}
+echo $1 is $x
+rowto 1
+#touch /tmp/rowto & sh -c "./rowto" root >> /tmp/rowto1 && echo rowto &
